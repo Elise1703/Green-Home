@@ -45,13 +45,13 @@ lu a:hover {
 
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr ;
 
 }
 
 .rectangle{
-	width:200px;
-	height:400px;
+	width:400px;
+	height:500px;
 	border color : grey ; border-style : solid ; border-width : 1px;
 }
 #nav { 
@@ -75,7 +75,7 @@ height: 850px;    width: 150px;    float: right;    line-height: 30px;    paddin
 </script>
 </head>
 <body>
-
+<form action = "ajout.php" method = "post">
 
 
 <center><img src="Green Home.png" height = 100 px length = 100px></center>
@@ -86,7 +86,7 @@ height: 850px;    width: 150px;    float: right;    line-height: 30px;    paddin
   <lu><a href="buying.html"><h4> Simulations</h4> </a></lu>
   <lu><a href="youraccount.html"><h4> Votre compte</h4></a></lu>
 <lu><a href="admin.html"><h4> Administrateur</h4></a></lu>
-<a href="identifyCart.html"><h4> <img src="panier.png" height = 50 px length = 50px></a>
+<a href="panier.php"><h4> <img src="panier.png" height = 50 px length = 50px></a>
 
 
 </ol>
@@ -123,21 +123,21 @@ $description = $row["description"];
 $price =$row["price"];
 $description2 =$row["description2"];
 $explications =$row["explications"];
-
+$stock=$row["stock"];
 
 
 echo '<div class="wrapper">';
 echo '<div>'.'<center>';
  echo '<div class="rectangle">';
 echo '<p>';
-print '<img src="'.$row["img_path"].'" HEIGHT = 150 px 	WIDTH = 100 px />';
+print '<img src="'.$row["img_path"].'" HEIGHT = 300 px 	WIDTH = 400 px />';
 echo '<p>';
 echo '<input type = "radio" name = "description" value = "'.$description.'" checked = "checked" >';
 echo $description.'<br>'.'<p>';
-echo '<h4>'.$row["price"]." £". '</h4>';
+echo '<h1>'.$row["price"]." £". '</h1>';
 echo '</div>';
 echo '</center>'.'</div>';
-echo '<div>'.'<center>';
+echo '<div>';
 echo '<h4>'.$row["description2"]. '</h4>';
 echo '<hr>';
 echo '<ul>';
@@ -150,10 +150,16 @@ echo '<p>';
 echo '<li>'.$row["explications4"].'</li>';
 echo '</ul>';
 echo '<p>';
-
-echo'<input type = "submit" value = "Acheter" >';
+if($stock > 0){
+echo '<div>'.'<center>';
+echo '<p>'.'<a href="ajout.php?id='.$id.'">'."Acheter".'</a>'.'<p>';
 echo '</center>'.'</div>'; 
-
+}
+else{
+echo '<div>'.'<center>';
+echo '<h4>'." Plus de stock en ce moment !". '</h4>';
+echo '</center>'.'</div>'; 
+}
 }}
 $mysqli->close();
 ?>

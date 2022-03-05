@@ -1,16 +1,14 @@
 <!DOCTYPE html >
 <html>
 <head>
-<title>Green Home : Eoliennes</title>
+<title>Green Home : Panier</title>
 <meta charset="utf-8">
 <style type="text/css">
 body{
 font-family : Arial;
 }
 
-texte{
-color: grey;
-}
+
 
 ul {
     list-style-type: none;
@@ -45,37 +43,20 @@ li a:hover {
 
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-
+  grid-template-columns: 1fr 1fr;
 }
 
 .rectangle{
 	width:200px;
-	height:400px;
+	height:320px;
 	border color : grey ; border-style : solid ; border-width : 1px;
 }
-#nav { 
-font-weight:bold;        
-font-size: 1.2em;  
-height: 850px;    width: 150px;    float: left;    line-height: 30px;    padding: 5px;    
- 
-} 
-
-#nav2 { 
-font-weight:bold;        
-font-size: 1.2em;  
-height: 850px;    width: 150px;    float: right;    line-height: 30px;    padding: 5px;     
-} 
 
 </style>
 <script type="text/javascript">
-
-
-
 </script>
 </head>
 <body>
-<form action = "transaction.php" method = "post">
 
 
 <center><img src="Green Home.png" height = 100 px length = 100px></center>
@@ -92,10 +73,14 @@ height: 850px;    width: 150px;    float: right;    line-height: 30px;    paddin
 </ul>
 </center>
 <hr>
-<h4>Eoliennes</h4>
 <?php
+/*
+* Change the value of $password if you have set a password on the root userid
+* Change NULL to port number to use DBMS other than the default using port 3306
+*
+*/
 
- echo '<div class="wrapper">';
+
 $user = 'root';
 $password = ''; //To be completed if you have set a password to root
 $database = 'green_home'; //To be completed to connect to a database. The database must exist.
@@ -109,43 +94,51 @@ if ($mysqli->connect_error) {
 
 
 
-$sql17 = "SELECT* FROM item WHERE categories='eolienne'";
-$result17 = $mysqli->query($sql17);
 
-
-
- if ($result17->num_rows > 0) {
- while($row = $result17->fetch_assoc()) {
- $id = $row["id"];
+$total = 0;
+$sql18 = "SELECT* FROM item WHERE achat_en_cours = 1";
+$result18 = $mysqli->query($sql18);
+if ($result18->num_rows > 0) {
+ while($row = $result18->fetch_assoc()) {
+$id_item = $row["id"];
 $img_path = $row["img_path"];
 $description = $row["description"];
 $price =$row["price"];
+$description2 =$row["description2"];
+$explications =$row["explications"];
+$explications2 =$row["explications2"];
+$explications3 =$row["explications3"];
+$explications4 =$row["explications4"];
+$categories =$row["categories"];
+$bought =$row["bought"];
 
-
-
-echo '<div>'.'<center>';
+ 
+echo '<center>';
  echo '<div class="rectangle">';
 echo '<p>';
 print '<img src="'.$row["img_path"].'" HEIGHT = 150 px 	WIDTH = 100 px />';
 echo '<p>';
 echo $row["description"];
 echo '<p>';
-echo '<h4>'.$row["price"]." £". '</h4>';
-$id = $row["id"];
+echo '<h4>'.$row["price"]."€". '</h4>';
+echo '<p>';
+$total=$total+$row["price"];
 
-echo '<p>'.'<a href="transaction.php?id='.$id.'">'."Informations".'</a>'.'<p>';
-echo '</div>'.'<p>';
 
+
+
+ 
 echo '</center>'.'</div>';
-
+echo '<p>';
 
 }}
+echo '<center>';
+echo "The total sum is :".$total." €.";
+echo '<p>';
+echo '<p>'.'<input type = "submit" value = "Procéder au paiement">';
+echo '</center>';
 $mysqli->close();
 ?>
 
-<p>
-
-
-</div>
 </body>
 </html>
