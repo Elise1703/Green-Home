@@ -1,0 +1,85 @@
+<!DOCTYPE html >
+<html>
+<head>
+<title>Green Home : Homepage</title>
+<meta charset="utf-8">
+<style type="text/css">
+body{
+font-family : Arial;
+}
+
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 20;
+    overflow: hidden;
+    background-color: white;
+
+font-family : Arial;
+}
+
+li {
+   float : left;
+ 
+}
+
+li a {
+
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+margin: 0 60px;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+
+    background-color: pink;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+</style>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+
+<form action = "simulation.php" method = "post" >
+
+<center><img src="Green Home.png" height = 100 px length = 100px></center>
+
+<center>
+<ul >
+  <li><a href="homepage.html"><h4> Catégories</h4></a></li>
+  <li><a href="simulation.html"><h4> Simulations</h4> </a></li>
+  <li><a href="youraccount.html"><h4> Votre compte</h4></a></li>
+<li><a href="admin.html"><h4> Administrateur</h4></a></li>
+<a href="panier.php"><h4> <img src="panier.png" height = 50 px length = 50px></a>
+
+</ul>
+</center>
+<hr>
+<center>
+<texte>
+<h4>Veuillez saisir les données correspondant à votre maison 
+<p>
+</texte>
+<center>
+Taille maison  : <INPUT TYPE="text" NAME="taille" VALUE=""> en m^2
+<p>
+<input type = "submit" value = "Trouver son arrangement idéal" >
+<p>
+
+
+</center>
+</body>
+</html>
